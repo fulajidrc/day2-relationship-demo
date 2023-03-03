@@ -86,5 +86,18 @@ controller.logout = async (req, res) => {
     }
 }
 
+controller.getAll = async (req, res) => {
+    try{
+        const admins = await Admin.findAll({
+            include: [
+               { model: model.Post, include: model.Category} 
+            ]
+        });
+        return res.status(200).json({message: 'Admin\'s list ', data: admins})
+    }catch(error){
+        res.status(500).json({message: 'Server Error!'});
+    }
+}
+
 
 module.exports = controller;

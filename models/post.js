@@ -22,5 +22,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Post',
   });
+
+  Post.associate = function(models) {
+    Post.belongsTo(models.Admin,  { foreignKey: 'userId'})
+    Post.belongsTo(models.Category,  {foreignKey:'categotyId'})
+  };
   return Post;
 };

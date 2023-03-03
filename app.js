@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var companiesRouter = require('./routes/company');
 const adminRoute = require('./routes/admin');
 const categoryRoute = require('./routes/category.route')
+const postRoute = require('./routes/post.route')
 
 var app = express();
 
@@ -24,5 +25,6 @@ app.use('/api/users', usersRouter);
 app.use('/api/companies', companiesRouter);
 app.use('/api', adminRoute);
 app.use('/api/category', categoryRoute);
+app.use('/api/post', postRoute); 
 
 module.exports = app;

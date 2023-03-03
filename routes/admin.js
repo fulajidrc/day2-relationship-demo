@@ -5,7 +5,7 @@ const controller = require('../controllers')
 const {adminRequest} = require('../requests');
 const { auth } = require('../middlewares');
 /* GET users listing. */
-//router.get('/', controller.company.getAll);
+router.get('/admins', controller.admin.getAll);
 router.post('/register', adminRequest, controller.admin.register);
 router.post('/login', controller.admin.login);
 router.get('/verify', auth, controller.admin.verify)

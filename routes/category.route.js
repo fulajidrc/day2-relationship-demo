@@ -8,8 +8,7 @@ const { auth } = require('../middlewares');
 router.get('/', auth, controller.category.getAll);
 router.post('/', [auth, categoryRequest], controller.category.create);
 router.put('/:id', [auth, categoryRequest], controller.category.update);
-// router.delete('/:id', controller.company.delete);
-// router.get('/:id', controller.company.getOne);
+router.delete('/:id',auth, controller.category.delete);
+router.get('/:id', auth, controller.category.getOne);
 
 module.exports = router;
-//register

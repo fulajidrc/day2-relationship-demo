@@ -74,9 +74,29 @@ controller.update = async (req, res) => {
 
 controller.delete = async (req, res) => {
     try{
-
+        const {id} = req.params
+        const deleteCategory = await Category.destroy({
+            where: {id}
+        });
+        return deleteCategory 
+        ? res.status(200).json({message: 'Category deleted successfully!'})
+        : res.status(400).json({message: 'Category not deleted!'});
     }catch(error){
-        
+        return res.status(500).json({message: 'Server error!'})
+    }
+}
+
+controller.getOne = async (req, res) => {
+    try{
+        const { id } = req.params
+        const category = await Category.findOne({
+            where: {id}
+        });
+        return category 
+        ? res.status(200).json({message: 'Category Data!', data: category})
+        : res.status(400).json({message: 'Category not found!'})
+    }catch(error){
+        return res.status(500).json({message: 'Server Error'});
     }
 }
 
