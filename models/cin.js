@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
   // /CinDinCin
   Cin.associate = function(models) {
     Cin.hasMany(models.CinDin, { foreignKey: 'cin', otherKey:'cin', sourceKey:'cin'})
+    //belongsToMany
+    //Cin.belongsToMany(models.CinDin, { through: models.Din, foreignKey: 'cin', otherKey:'cin', sourceKey:'cin'})
+    //{ through: 'C' }
   };
   return Cin;
 };

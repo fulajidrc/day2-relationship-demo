@@ -8,8 +8,13 @@ controller.getAll = async (req, res) => {
         const cins = await Cin.findAll({
             //include: 'CinDins',
             include : [{
-                model: models.CinDin
-              }]
+                model: models.CinDin,
+                include: [{
+                    model: models.Din
+                }, {
+                    model: models.Cin
+                }]
+            }]
         });
         // const companies = await Company.findAll({
         //     include: 'employes'

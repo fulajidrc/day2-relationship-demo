@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 
   CinDin.associate = function(models) {
     CinDin.belongsTo(models.Cin,  {targetKey:'cin', foreignKey: 'cin'})
+    CinDin.belongsTo(models.Din,  {targetKey:'din', foreignKey: 'din'})
   };
 
   return CinDin;

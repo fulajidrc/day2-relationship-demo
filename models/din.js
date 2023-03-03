@@ -19,5 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Din',
   });
+
+  Din.associate = function(models) {
+    Din.hasMany(models.CinDin, { foreignKey: 'din', otherKey:'din', sourceKey:'din'})
+  };
+
   return Din;
 };
