@@ -38,5 +38,59 @@ controller.getAll = async (req, res) => {
     }
 }
 
+controller.update = async (req, res) => {
+    try{
+        const { title, description, categotyId } = req.body;
+        const {id} = req.params;
+        const postUpdate = {
+            title, 
+            description, 
+            categotyId
+        }
+        const post = await Post.update(postUpdate, {
+            where: {id}
+        })
+        return post
+        ? res.status(200).json({message: 'Post updated successfully!'})
+        : res.status(400).json({message: 'Post not updated!'})
+    }catch(error){
+        return res.status(500).json({message: 'Server Error!'})
+    }
+}
+
+controller.getOne = async(req, res) => {
+    try{
+        const {id} = req.params
+        const post = await Post.findOne({
+            where: {
+                id
+            },
+            include:[
+                model.Category,
+                model.Admin
+            ]
+        })
+        return post
+        ? res.status(200).json({message: 'post detail', data: post})
+        : res.status(400).json({message: 'post not found!'})
+    }catch(error){
+        return res.status(500).json({message: 'Server Error!'})
+    }
+}
+
+controller.delete = async (req, res) => {
+    try{
+        const { id } = req.params
+        const deletePost = await Post.destroy({
+            where: {id}
+        })
+        return deletePost
+        ? res.status(200).json({message: 'Post deleted successfully!'})
+        : res.status(400).json({message: 'Post not deleted!'})
+    }catch(error){
+        return res.status(500).json({message:'Server Error!'})
+    }
+}
+
 
 module.exports = controller;
